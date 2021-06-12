@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 export type RowItemType = {
-  data: string,
+  data: any,
 };
 
 interface  RowItemProps {

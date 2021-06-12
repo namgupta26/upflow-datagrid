@@ -14,19 +14,14 @@ let gridHeader = [
   },
 ];
 
-let gridData = [
-  {
-    name: "Naman",
-    age: 12
-  },
-  {
-    age: 15,
-  },
-  {
-    name: "Naman2",
-    age: 11
-  },
-];
+const gridData = ([...Array(10000)].map((_, i) => {
+  return {
+    name: "Naman"+i,
+    age: i
+  }
+}))
+
+console.log(gridData)
 
 function App() {
   return (
@@ -45,7 +40,7 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <Grid gridData={gridData} gridHeader={gridHeader}></Grid>
+      <Grid gridRowsData={gridData} gridHeaderData={gridHeader}></Grid>
     </div>
   );
 }
