@@ -37,5 +37,5 @@ const GridRow = ({rowData, nextPageRef}: {rowData: any, nextPageRef?: any}) =>  
     );
 }
 
-export default GridRow
+export default React.memo(GridRow)
  
