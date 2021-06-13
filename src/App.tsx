@@ -31,7 +31,7 @@ let gridHeader = [
 
 const gridData: any = ([...Array(500)].map((_, i) => {
   return {
-    name: "NamanNamanNamanNamanNamanNamanNamanNamanNamanNaman"+i,
+    name: "NamanNamanNamanNamanNamanNam"+i,
     name2: "NamanNamanNamanNamanNamanNamanNamanNamanNamanNaman"+i,
     age: parseInt(((Math.random()*100)+1).toString()),
     age2: parseInt(((Math.random()*100)+1).toString())

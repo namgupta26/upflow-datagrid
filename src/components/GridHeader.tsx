@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import GridHeaderItem, { HeaderItemType, HeaderSortStatusType, SortOrderENum } from './GridHeaderItem';
 
-const GridHeader = ({headerRowData, onSorting}: {headerRowData: Array<HeaderItemType>, onSorting: any}) =>  {
+const GridHeader = ({headerRowData, onSorting, rowStyle}: {headerRowData: Array<HeaderItemType>, onSorting: any, rowStyle: object}) =>  {
 
   const [sortingField, setSortingField] = useState("")
   const [sortingOrder, setSortingOrder] = useState(SortOrderENum["asc"])
@@ -17,7 +17,7 @@ const GridHeader = ({headerRowData, onSorting}: {headerRowData: Array<HeaderItem
    
 
   return (
-    <div className="header row p-2">
+    <div className="header row p-2" style={rowStyle}>
         { 
            headerRowData.map( (header: HeaderItemType) => { 
             

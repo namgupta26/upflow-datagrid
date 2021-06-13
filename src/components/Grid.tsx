@@ -106,7 +106,26 @@ const Grid = ({gridRowsData, gridHeaderData}: {gridRowsData: Array<object>, grid
         setGridAllData(temp)
     }
 
+    // workaround - calculates Column Width based on first 100 items
+    const calculateColumnWidths = () => {
+        let avgLength:any = {}
+        let currentRows = gridRowsData.slice(0,100)
+        currentRows.forEach((row: any, index: number) => {
+            gridHeaderData.forEach((header: any) => {
+                if(index == 0)
+                    avgLength[header.id] = 0;
+                avgLength[header.id] += parseInt(row[header.id].toString().length)
+            });
+        });
+        let columnFr = ""
+        gridHeaderData.forEach((header: any) => {
+            columnFr += "minMax(100px,"+Math.floor(Math.sqrt(avgLength[header.id]/currentRows.length)) + "fr) ";
+        });
 
+        columnFr += " minMax(100px, 1fr)"
+        return {gridTemplateColumns: columnFr}
+        
+    }
 
     
     return (
@@ -115,7 +134,8 @@ const Grid = ({gridRowsData, gridHeaderData}: {gridRowsData: Array<object>, grid
             headerRowData={gridHeader} 
             onSorting={ (field: string, order: string) =>  
                 setSorting({field, order})
-            } 
+            }            
+            rowStyle={calculateColumnWidths()}
         />
         <GridHeaderContext.Provider value={gridHeader}>
             { 
@@ -126,6 +146,7 @@ const Grid = ({gridRowsData, gridHeaderData}: {gridRowsData: Array<object>, grid
                         key={rowData.name} 
                         id={index} 
                         rowData={rowData}
+                        rowStyle={calculateColumnWidths()}
                         onTriggerDelete = {handleOnDelete}
                         ></GridRow>
                     }
@@ -134,6 +155,7 @@ const Grid = ({gridRowsData, gridHeaderData}: {gridRowsData: Array<object>, grid
                         key={rowData.name} 
                         id={index} 
                         rowData={rowData}
+                        rowStyle={calculateColumnWidths()}
                         onTriggerDelete = {handleOnDelete}
                         ></GridRow>
                     }

@@ -43,9 +43,10 @@ body {
 }
 
 .grid-container{
-  width: 50%;
-  max-height: 500px;
+  width: 100%;
   background: white;
+  margin: 0 auto;
+  display:grid;
 }
 
 .header:hover{
