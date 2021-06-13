@@ -2,28 +2,41 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Grid } from './components/Grid';
+import { AlignmentEnum } from './components/GridHeaderItem';
 
 let gridHeader = [
   {
     name: "Name",
     id:"name",
-    sortable: true
+    sortable: true,
+    align: AlignmentEnum['center']
+  },
+  {
+    name: "Name2",
+    id:"name2",
+    sortable: true,
+    align: AlignmentEnum['center']
   },
   {
     name: "Age",
     id:"age",
     sortable: true
   },
+  {
+    name: "Age2",
+    id:"age2",
+    sortable: true
+  }
 ];
 
-const gridData = ([...Array(500)].map((_, i) => {
+const gridData: any = ([...Array(500)].map((_, i) => {
   return {
-    name: "Naman"+i,
-    age: parseInt(((Math.random()*100)+1).toString())
+    name: "NamanNamanNamanNamanNamanNamanNamanNamanNamanNaman"+i,
+    name2: "NamanNamanNamanNamanNamanNamanNamanNamanNamanNaman"+i,
+    age: parseInt(((Math.random()*100)+1).toString()),
+    age2: parseInt(((Math.random()*100)+1).toString())
   }
 }))
-
-console.log(gridData)
 
 function App() {
   return (

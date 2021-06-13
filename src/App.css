@@ -52,17 +52,26 @@ body {
   cursor: pointer;
 }
 
+.header-item, .row-item {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  word-wrap: break-word;
+}
+
 .header-item {
   font-weight: bold;
   font-size: 1.1em;
   padding: 0.4em;
   color: white;
   border: 1px solid;
+  text-align: center;
 }
 
 .row{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  /* grid-template-columns: minmax(150px, 5fr) minmax(150px, 5fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr); */
   background: white;
   font-size: 1em;
 }
@@ -73,6 +82,7 @@ body {
 
 .row-item {
   padding: 0.35em;
+  text-align: left;
 }
 
 
@@ -83,6 +93,18 @@ body {
 
 .header{
   background: #36304a;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }
 
 

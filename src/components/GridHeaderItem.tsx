@@ -6,17 +6,25 @@ import React, { FC } from 'react';
 
 library.add(faArrowDown, faArrowUp)
 
-export type HeaderItemType = {
-    name: string,
-    id: string, 
-    sortable?: boolean
-  };
-
 export enum SortOrderENum {
   "asc",
   "desc",
   "none"
 }
+
+export enum  AlignmentEnum{
+  "left",
+  "center",
+  "right"
+}
+
+export type HeaderItemType = {
+    name: string,
+    id: string, 
+    sortable?: boolean
+    align?: AlignmentEnum
+  };
+
 
 export type HeaderSortStatusType = {
     active: boolean,
@@ -31,7 +39,6 @@ interface  GridHeaderItemProps {
 
 const GridHeaderItem: FC<GridHeaderItemProps> = ({headerItem, sortStatus, onSortTrigger}) => {
 
-  
   return (
     <div className="header-item" onClick={() => 
       headerItem.sortable? onSortTrigger(headerItem.id): null
@@ -42,7 +49,6 @@ const GridHeaderItem: FC<GridHeaderItemProps> = ({headerItem, sortStatus, onSort
           sortStatus.order === SortOrderENum["asc"] ? "arrow-down": "arrow-up"
         }/>
       )}</span>
-  
     </div>
   )
 }

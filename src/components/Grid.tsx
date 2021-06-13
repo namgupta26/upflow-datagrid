@@ -7,6 +7,7 @@ const GridHeaderContext = React.createContext(new Array<HeaderItemType>());
 
 const Grid = ({gridRowsData, gridHeaderData}: {gridRowsData: Array<object>, gridHeaderData: Array<HeaderItemType>}) =>  {  
     
+    // const gridContainer = useRef();
     
     const [loading, setLoading] = useState(true);
     const [pageNumber, setPageNumber] = useState(0);
@@ -50,7 +51,7 @@ const Grid = ({gridRowsData, gridHeaderData}: {gridRowsData: Array<object>, grid
             resetGridData();
         }
         else{
-            addRows()
+            addRows();
         }
         
     }, [sorting])
@@ -62,7 +63,7 @@ const Grid = ({gridRowsData, gridHeaderData}: {gridRowsData: Array<object>, grid
     }
 
     
-    // add rows when resetting, or add subsequent rows based generally
+    // reset and add rows, or only add subsequent rows
     const addRows = (reset: boolean = false) => {
         
         setLoading(true)
@@ -92,9 +93,24 @@ const Grid = ({gridRowsData, gridHeaderData}: {gridRowsData: Array<object>, grid
         const newRows = gridAllData.slice(pageNo*maxRowPer,(pageNo*maxRowPer)+maxRowPer)
         return newRows;
     }
+
+
+    const handleOnDelete = (rowId:number) => {
+        console.log(rowId)
+        
+        let temp = [...gridData]
+        temp.splice(rowId, 1)
+        setGridData(temp)
+        temp = [...gridAllData]
+        temp.splice(rowId, 1)
+        setGridAllData(temp)
+    }
+
+
+
     
     return (
-    <div className="grid-container">
+    <div className="grid-container" >
         <GridHeader 
             headerRowData={gridHeader} 
             onSorting={ (field: string, order: string) =>  
@@ -105,10 +121,22 @@ const Grid = ({gridRowsData, gridHeaderData}: {gridRowsData: Array<object>, grid
             { 
                 gridData.map((rowData: any, index: number) => {
                     if(index + 1 === gridData.length - loadMoreIndexFromEnd){
-                        return <GridRow nextPageRef={loadNextRowRef} key={rowData.name} rowData={rowData}></GridRow>
+                        return <GridRow 
+                        nextPageRef={loadNextRowRef} 
+                        key={rowData.name} 
+                        id={index} 
+                        rowData={rowData}
+                        onTriggerDelete = {handleOnDelete}
+                        ></GridRow>
                     }
-                    else
-                        return <GridRow key={rowData.name} rowData={rowData}></GridRow>
+                    else{
+                        return <GridRow 
+                        key={rowData.name} 
+                        id={index} 
+                        rowData={rowData}
+                        onTriggerDelete = {handleOnDelete}
+                        ></GridRow>
+                    }
                 })
             }
         </GridHeaderContext.Provider>

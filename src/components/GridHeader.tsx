@@ -36,9 +36,12 @@ const GridHeader = ({headerRowData, onSorting}: {headerRowData: Array<HeaderItem
                 sortStatus={sortStatus}
                 > 
             </GridHeaderItem>
+            
             )
           })
         }
+        
+     <div className="header-item">Options</div>
     </div>
   );
 }
