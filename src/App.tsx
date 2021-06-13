@@ -6,18 +6,20 @@ import { Grid } from './components/Grid';
 let gridHeader = [
   {
     name: "Name",
-    id:"name"
+    id:"name",
+    sortable: true
   },
   {
     name: "Age",
-    id:"age"
+    id:"age",
+    sortable: true
   },
 ];
 
-const gridData = ([...Array(10000)].map((_, i) => {
+const gridData = ([...Array(500)].map((_, i) => {
   return {
     name: "Naman"+i,
-    age: i
+    age: parseInt(((Math.random()*100)+1).toString())
   }
 }))
 
