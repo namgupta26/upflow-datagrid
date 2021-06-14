@@ -23,8 +23,8 @@ The Grid Component takes 2 parameters:
 ```
 [
     {
-        name: prop[0].toUpperCase() + prop.slice(1),
-        id:prop,
+        name: "name",
+        id:"Name,
         sortable: true,
         align: AlignmentEnum['center']
     }
