@@ -5,6 +5,7 @@ body {
 
 .App {
   text-align: center;
+  height:100vh;
 }
 
 .App-logo {
@@ -42,11 +43,19 @@ body {
   }
 }
 
+.loader-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+}
+
 .grid-container{
-  width: 100%;
+  min-width: 100%;
   background: white;
   margin: 0 auto;
   display:grid;
+  min-height: 100%;
 }
 
 .header:hover{

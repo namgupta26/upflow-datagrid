@@ -1,61 +1,47 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Grid } from './components/Grid';
 import { AlignmentEnum } from './components/GridHeaderItem';
 
-let gridHeader = [
-  {
-    name: "Name",
-    id:"name",
-    sortable: true,
-    align: AlignmentEnum['center']
-  },
-  {
-    name: "Name2",
-    id:"name2",
-    sortable: true,
-    align: AlignmentEnum['center']
-  },
-  {
-    name: "Age",
-    id:"age",
-    sortable: true
-  },
-  {
-    name: "Age2",
-    id:"age2",
-    sortable: true
-  }
-];
+const API_URL = "http://localhost:4000/"
 
-const gridData: any = ([...Array(500)].map((_, i) => {
-  return {
-    name: "NamanNamanNamanNamanNamanNam"+i,
-    name2: "NamanNamanNamanNamanNamanNamanNamanNamanNamanNaman"+i,
-    age: parseInt(((Math.random()*100)+1).toString()),
-    age2: parseInt(((Math.random()*100)+1).toString())
-  }
-}))
+const App = () => {
 
-function App() {
+  const [gridData, setGridData] = useState(new Array())
+  const [gridHeaderData, setHeaderData] = useState(new Array())
+
+  useEffect(()=>{
+    loadData();
+  },[])
+  
+  const loadData = async () => {
+    const response = await fetch(API_URL);
+    let data = await response.json();
+    console.log(data);
+    setGridData(data);
+    setHeaderData(autoGenerateHeader(data[0]))
+  }
+
+  const autoGenerateHeader = (rowItem: any) => {
+    const headerAr = [];
+    for(let prop in rowItem){
+      let headerItem = {
+        name: prop[0].toUpperCase() + prop.slice(1),
+        id:prop,
+        sortable: true,
+        align: AlignmentEnum['center']
+      };
+      headerAr.push(headerItem)
+    }
+    return headerAr;
+  }
+
+  
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      <Grid gridRowsData={gridData} gridHeaderData={gridHeader}></Grid>
+      
+      <Grid gridRowsData={gridData} gridHeaderData={gridHeaderData}></Grid>
     </div>
   );
 }
