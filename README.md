@@ -4,10 +4,42 @@ A re-usable datagrid component in React
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+The Grid Component takes 2 parameters:
+- gridData : Array of JSON objects representing the data.
+
+```
+[
+    {
+      "name": "My Name is Naman Gupta 0",
+      "address": "Country is 0",
+      "age": 9,
+      "score": 82
+    }
+]
+```
+
+- gridHeaderData: Array of header fields and their configuration.
+
+```
+[
+    {
+        name: prop[0].toUpperCase() + prop.slice(1),
+        id:prop,
+        sortable: true,
+        align: AlignmentEnum['center']
+    }
+]
+```
+
 
 # Features
 
-To be updated
+- Handles Large Number of Rows (Infinite Scrolling) - tested for 1,00,00 rows
+- Reusable API
+- Light Backend for DataGrid
+- Able to sort by click on header
+- Able to delete rows
+- Autosize based on content (Experimental)
 
 ## Available Scripts
 

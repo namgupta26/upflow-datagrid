@@ -2,14 +2,14 @@ import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Grid } from './components/Grid';
-import { AlignmentEnum } from './components/GridHeaderItem';
+import { AlignmentEnum, HeaderItemType } from './components/GridHeaderItem';
 
 const API_URL = "http://localhost:4000/"
 
 const App = () => {
 
   const [gridData, setGridData] = useState(new Array())
-  const [gridHeaderData, setHeaderData] = useState(new Array())
+  const [gridHeaderData, setHeaderData] = useState(new Array<HeaderItemType>())
 
   useEffect(()=>{
     loadData();

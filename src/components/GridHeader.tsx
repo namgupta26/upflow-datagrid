@@ -7,7 +7,6 @@ const GridHeader = ({headerRowData, onSorting, rowStyle}: {headerRowData: Array<
   const [sortingOrder, setSortingOrder] = useState(SortOrderENum["asc"])
   
   const handleSortTrigger = (field: string) => {
-    console.log("SORT TRIGGER")
     const order = 
       field === sortingField && sortingOrder ===  SortOrderENum["asc"] ? SortOrderENum["desc"] : SortOrderENum["asc"];
     setSortingField(field)
